@@ -1,0 +1,22 @@
+import 'package:flutter/material.dart';
+import 'widgets/onboarding_body.dart';
+import 'widgets/onboarding_button.dart';
+
+class OnboardingScreenThree extends StatelessWidget {
+  const OnboardingScreenThree({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return OnboardingBody(
+      image: Image.asset('assets/images/onboarding_3.png', height: 250),
+      title: "Get Back What You Lost",
+      description: "Connect with finders and reclaim your items.",
+      button: OnboardingButton(
+        text: "Get Started",
+        onPressed: () {
+          Navigator.pushReplacementNamed(context, '/home');
+        },
+      ),
+    );
+  }
+}
