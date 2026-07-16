@@ -1,65 +1,60 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../bloc/onboarding/onboarding_bloc.dart';
-import '../../bloc/onboarding/onboarding_event.dart';
-import '../../bloc/onboarding/onboarding_state.dart';
 import 'onboarding_screen_one.dart';
 import 'onboarding_screen_two.dart';
 import 'onboarding_screen_three.dart';
-import 'widgets/page_indicator.dart';
 
-class OnboardingScreen extends StatelessWidget {
+class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => OnboardingBloc(),
-      child: BlocBuilder<OnboardingBloc, OnboardingState>(
-        builder: (context, state) {
-          final pages = const [
-            OnboardingScreenOne(),
-            OnboardingScreenTwo(),
-            OnboardingScreenThree(),
-          ];
+  State<OnboardingScreen> createState() => _OnboardingScreenState();
+}
 
-          return Scaffold(
-            body: SafeArea(
-              child: Column(
-                children: [
-                  Expanded(child: pages[state.currentPage]),
-                  const SizedBox(height: 20),
-                  PageIndicator(currentIndex: state.currentPage, total: 3),
-                  const SizedBox(height: 20),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      if (state.currentPage > 0)
-                        TextButton(
-                          onPressed: () {
-                            context.read<OnboardingBloc>().add(PreviousPage());
-                          },
-                          child: const Text("Back"),
-                        ),
-                      TextButton(
-                        onPressed: () {
-                          context.read<OnboardingBloc>().add(
-                            state.currentPage == 2 ? CompleteOnboarding() : NextPage(),
-                          );
-                          if (state.currentPage == 2) {
-                            Navigator.pushReplacementNamed(context, '/home');
-                          }
-                        },
-                        child: Text(state.currentPage == 2 ? "Finish" : "Next"),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 20),
-                ],
-              ),
-            ),
-          );
+class _OnboardingScreenState extends State<OnboardingScreen> {
+  final PageController _controller = PageController();
+  int _currentPage = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: PageView(
+        controller: _controller,
+        onPageChanged: (index) {
+          setState(() => _currentPage = index);
         },
+        children: const [
+          OnboardingScreenOne(),
+          OnboardingScreenTwo(),
+          OnboardingScreenThree(),
+        ],
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: List.generate(3, (index) {
+            bool isActive = _currentPage == index;
+            return Container(
+              margin: const EdgeInsets.symmetric(horizontal: 4),
+              width: 12,
+              height: 12,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                gradient: isActive
+                    ? const LinearGradient(
+                        colors: [
+                          Color(0xFF2563EB), // Blue shade (logo colour)
+                          Color.fromARGB(255, 223, 39, 217), // Green shade (logo colour)
+                        ],
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                      )
+                    : null,
+                color: isActive ? null : const Color.fromARGB(255, 121, 115, 115), // fallback for inactive
+              ),
+            );
+          }),
+        ),
       ),
     );
   }
