@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'ui/splash_screen/splash_screen.dart'; // import your splash screen
+import 'ui/onboarding/onboarding_screen_one.dart'; // ✅ import onboarding screen
 
 void main() {
   runApp(const BeFoundApp());
@@ -18,8 +18,8 @@ class BeFoundApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.white,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      // ✅ Start directly with SplashScreen
-      home: const SplashScreen(),
+      // ✅ Start directly with OnboardingScreenOne
+      home: const OnboardingScreenOne(),
     );
   }
 }

@@ -6,7 +6,7 @@ class OnboardingScreenTwo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const OnboardingBody(
+    return OnboardingBody(
       image: Image.asset('assets/images/onboarding_2.png', height: 250),
       title: "Report Found Items",
       description: "Help others by reporting items you find.",

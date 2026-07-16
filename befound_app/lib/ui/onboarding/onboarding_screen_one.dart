@@ -6,7 +6,7 @@ class OnboardingScreenOne extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const OnboardingBody(
+    return OnboardingBody(
       image: Image.asset('assets/images/onboarding_1.png', height: 250),
       title: "Search Lost Items",
       description: "Quickly find your lost belongings with BeFound.",
