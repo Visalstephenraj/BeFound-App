@@ -1,5 +1,5 @@
+import 'package:befound_app/ui/home/home_screen.dart';
 import 'package:flutter/material.dart';
-import 'ui/onboarding/onboarding_screen_one.dart'; // ✅ import onboarding screen
 
 void main() {
   runApp(const BeFoundApp());
@@ -19,7 +19,7 @@ class BeFoundApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
       // ✅ Start directly with OnboardingScreenOne
-      home: const OnboardingScreenOne(),
+      home: const HomeScreen(),
     );
   }
 }
