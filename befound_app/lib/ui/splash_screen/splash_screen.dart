@@ -7,6 +7,7 @@ import 'widgets/splash_logo.dart';
 import 'widgets/splash_background.dart';
 import 'widgets/splash_loading.dart';
 
+
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
 

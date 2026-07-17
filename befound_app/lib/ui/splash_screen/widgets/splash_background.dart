@@ -6,7 +6,7 @@ class SplashBackground extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white, // plain white background
+      color: const Color.fromARGB(255, 255, 255, 255), // plain white background
     );
   }
 }

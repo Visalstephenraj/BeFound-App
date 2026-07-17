@@ -9,7 +9,7 @@ class SplashLoading extends StatelessWidget {
       width: double.infinity,
       height: MediaQuery.of(context).size.height * 0.3, // 30% of screen height
       child: Image.asset(
-        'assets/images/splash.png',
+        'assets/images/splash.png', // ✅ your splash image path
         fit: BoxFit.cover, // fills width, crops proportionally
       ),
     );
